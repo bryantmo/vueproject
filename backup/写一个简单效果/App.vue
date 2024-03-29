@@ -1,6 +1,9 @@
 <template>
     <!-- html 结构 -->
-    <Person></Person>
+    <div class="app2">
+        <h1>hello vue</h1>
+        <Person></Person>
+    </div>
 </template>
 
 <script lang="ts">
