@@ -7,7 +7,19 @@
         <h2>一辆{{new_energy.brand}}新能源车，价值{{new_energy.price}}</h2>
         <button @click="changeNewEnergyCarPrice">修改新能源汽车价格</button>
 
-    
+        <br>
+        <h2>游戏列表</h2>
+        <ul>
+            <li v-for="g in games" :key="g.id">
+                {{g.name}}
+            </li>
+        </ul>
+
+        <button @click="changeGameName">修改第一个游戏名字</button>
+
+        <hr>
+        <h2>深层次对象数据修改 {{obj.a.b.c}}</h2>
+        <button @click="changeDeepJson">测试深层次对象数据修改</button>
     </div>
 </template>
 
