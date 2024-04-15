@@ -18,3 +18,12 @@ Person.vue:59 reactive: Proxy(Array) {0: {…}, 1: {…}, 2: {…}}
 = RefImpl -》 ref，实际上底层还是reactive
 
 ref实际上遇到对象，还是用的reactive 
+
+toRef
+toRefs
+共同点：
+- 都是把响应式对象的数据，解构出来，并且提取出来还具有响应式能力
+
+不同点：
+- toRefs：把对象所有的key value 全部解构出来
+- toRef：只把某个key value 解构出来，一个个的取
