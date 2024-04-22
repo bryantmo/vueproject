@@ -1,13 +1,14 @@
 <template>
     <div class="person">
-
-        <h1>情况2：监视【reactive】的对象类型</h1>
-        <h2>牌子：{{ car.brand }}</h2>
-        <h2>价格：{{ car.price }}</h2>
-        <button @click="changeBrand">修改牌子</button>
-        <button @click="changePrice">修改价格</button>
-        <button @click="changeCar">修改整部车</button>
-
+        <h1>名字：{person.name}</h1>
+        <h2>年龄：{person.age}</h2>
+        <h2>第一部车：{person.car.c1}</h2>
+        <h2>第二部车：{person.car.c2}</h2>
+        <button @click="changePersonName">修改名字</button>
+        <button @click="changePersonAge">修改年龄</button>
+        <button @click="changePersonCar1">修改第一部车子</button>
+        <button @click="changePersonCar2">修改第二部车子</button>
+        <button @click="changePersonCars">修改全部车子</button>
     </div>
 </template>
 
@@ -18,40 +19,37 @@
 </script>
 
 <script setup name="Person" lang="ts">
-   
-    import {reactive, watch} from 'vue'
+    import {reactive} from 'vue'
 
-    // reactive-对象类型，vue官方规定：对象不能整体修改
-    let car = reactive({brand:'BBM',price:100})
-
-
-    function changeBrand() {
-        // 改变对象属性
-        car.brand += '五菱宏光'
-    }
-
-    function changePrice() {
-        // 改变对象属性
-        car.price += 1000
-    }
-
-    function changeCar() {
-        // 地址值会变化
-        // 1/2两种办法，都不能整体修改对象
-        //1- car = reactive({brand:'xiaomi su7', price:29.9})
-        //2- car = ({brand:'xiaomi su7', price:29.9})
-        //3- car：批量替换了car的属性，而没有替换掉整个对象
-        Object.assign(car, {brand:'xiaomi su7', price:29.9})
-    }
-
-    // 监听了car对象，由于是reactive,此时监听是默认开启深度监视的，且无法关闭
-    watch(car, (newVal, oldVal)=>{
-        console.log(car)
-        console.log('非深度监视，改对象值时才触发：car has changed: newVal = ', newVal, ', oldVal = ', oldVal)
+    // 数据
+    let person = reactive({
+        name:"张三",
+        age:18,
+        car:{
+            c1:'BMM',
+            c2:'保时捷'
+        }
     })
 
-    // 监听reactive时，拿到的都是同一个对象，只是在原来对象里面，更新了属性而已
-
+    // 方法列表
+    function changePersonName() {
+        person.name += "修改了名字"
+    }
+    function changePersonAge() {
+        person.age += 1
+    }
+    function changePersonCar1() {
+        person.car.c1 += "五菱宏光"
+    }
+    function changePersonCar2() {
+        person.car.c1 += "小米su7"
+    }
+    function changePersonCars() {
+        person.car = {
+            c1:"五菱宏光",
+            c2:"小米su7"
+        }
+    }
 </script>
 
 <style scoped>
