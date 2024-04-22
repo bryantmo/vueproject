@@ -82,11 +82,6 @@
         console.log("监听了person.car，函数式，深度",oldVal, newVal)
     }, {deep:true})
 
-    // 监听多个数据：用[]装起来多个函数式方法
-    watch([()=>person.age, ()=>person.car.c1], (oldVal, newVal)=>{
-        console.log("同时监听多个数据：person.age，person.car.c1，函数式，深度",oldVal, newVal)
-    }, {deep:true})
-
 </script>
 
 <style scoped>
