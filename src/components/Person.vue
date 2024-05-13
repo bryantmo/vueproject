@@ -1,42 +1,53 @@
 <template>
     <div class="person">
-        ???
+        <h2>当前求和为：{{sum}}</h2>
+        <button @click="add">点我sum+1</button>
     </div>
 </template>
 
-<script lang="ts">
-    export default {
-        name: 'Person'
-    }
-</script>
-
 <script setup name="Person" lang="ts">
-    import {type PersonInter} from '@/types'
+    import {ref, onBeforeMount, onMounted,
+        onBeforeUpdate, onUpdated,
+        onBeforeUnmount, onUnmounted} from 'vue'
 
-    let person:PersonInter = {id:'11', name:'11111', age:124}
+    //数据
+    let sum = ref(0)
 
-    // 手动指定一个Array和泛型
-    let persons:Array<PersonInter> = [
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12} 
-    ]
+    // 方法
+    function add() {
+        sum.value += 1
+    }
 
-    // 引用自定义类型
-    let persons2:PersonInterList = [
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12} 
-    ]
+    // 生命周期 - 创建； beforeCreate created => 被setup函数取代
+    console.log("创建好子组件...")
 
-    let persons3:PersonInters = [
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12},
-        {id:'11', name:'11111', age:12} 
-    ]
+    // 生命周期 - 挂载：onBeforeMount, onBeforeUpdate
+    onBeforeMount(() => {
+        console.log("子挂载前函数，手动调用一次onBeforeMount，是vue合适的时候调用的")
+    })
+
+    onMounted(() => {
+        console.log("子挂载完毕函数")
+    })
+
+    // 生命周期 - 更新：onBeforeUpdate, onUpdated
+    onBeforeUpdate(() => {
+        console.log("子更新前")
+    })
+
+    onUpdated(() => {
+        console.log("子更新完毕")
+    })
+
+    // 生命周期 - 卸载：
+    onBeforeUnmount(() => {
+        console.log("子卸载前")
+    })
+
+    onUnmounted(() => {
+        console.log("子卸载完毕")
+    })
+
 </script>
 
 <!-- 局部样式 ,下面所有的选择器，只能选中以上的所有东西-->
