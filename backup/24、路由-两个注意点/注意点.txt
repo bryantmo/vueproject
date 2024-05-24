@@ -1,0 +1,9 @@
+路由组件：pages 或 views，通过路由的规则渲染出来的
+比如：routes:[{path:'/demo', component:Demo}]
+
+一般组件：components，亲手写标签出来的，
+比如：<Demo/>
+
+pages/views 是工程开发的标准
+参考以下的vue工程：
+https://github.com/chuzhixin/vue-admin-better/tree/master/src
