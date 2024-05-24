@@ -1,5 +1,6 @@
 <template>
     <div class="app">
+        <Header/>
         <h2>Vue路由测试</h2>
         <!--导航区-->
         <div class="navigate">
@@ -16,6 +17,7 @@
 
 <script lang="ts" setup name="App">
     import { RouterView, RouterLink } from 'vue-router';
+    import Header from './components/Header.vue'
     // RouterLink是组件，内置属性 active-class
 </script>
 
