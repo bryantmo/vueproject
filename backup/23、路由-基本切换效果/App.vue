@@ -16,7 +16,7 @@
 
 <script lang="ts" setup name="App">
     import { RouterView, RouterLink } from 'vue-router';
-    // RouterLink是组件，内置属性 active-class
+    // RouterLink是组件，内置属性 active-class 
 </script>
 
 <style>
