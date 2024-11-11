@@ -1,5 +1,11 @@
 <template>
     <div class="app">
+        <div>
+            <audio ref="myAudio" controls></audio>
+            <button @click="playAudio">播放</button>
+            <input type="file" @change="handleFileChange" accept="audio/mpeg" />
+        </div>
+
         <h2>Vue路由测试</h2>
         <!--导航区-->
         <div class="navigate">
@@ -17,6 +23,27 @@
 <script lang="ts" setup name="App">
     import { RouterView, RouterLink } from 'vue-router';
     // RouterLink是组件，内置属性 active-class 
+
+    import { ref } from 'vue';
+    const myAudio = ref(null);
+    console.log("playAudio");
+    async function playAudio() {
+        console.log("播放音频");
+        // myAudio.value.src = '/src/asserts/horse.mp3';
+        myAudio.value.play();
+    }
+
+    const handleFileChange = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            myAudio.value.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
 </script>
 
 <style>
